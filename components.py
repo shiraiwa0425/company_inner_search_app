@@ -103,7 +103,7 @@ def display_conversation_log():
                             if "main_page_number" in message["content"]:
                                 st.success(f"{message['content']['main_file_path']}(ページNo.{message['content']['main_page_number'] + 1})", icon=icon)
                             else:
-                                st.success(f"{message['content']['main_file_path']}(ページ不明)", icon=icon)
+                                st.success(f"{message['content']['main_file_path']}", icon=icon)
                             
                             # ==========================================
                             # ユーザー入力値と関連性が高いサブドキュメントのありかを表示
@@ -120,7 +120,7 @@ def display_conversation_log():
                                     if "page_number" in sub_choice:
                                         st.info(f"{sub_choice['source']}(ページNo.{sub_choice['page_number'] + 1})", icon=icon)
                                     else:
-                                        st.info(f"{sub_choice['source']}(ページ不明)", icon=icon)
+                                        st.info(f"{sub_choice['source']}", icon=icon)
                         # ファイルのありかの情報が取得できなかった場合、LLMからの回答のみ表示
                         else:
                             st.markdown(message["content"]["answer"])
@@ -176,7 +176,7 @@ def display_search_llm_response(llm_response):
             st.success(f"{main_file_path}(ページNo.{main_page_number + 1})", icon=icon)
         else:
             # 「メインドキュメントのファイルパス」を表示
-            st.success(f"{main_file_path}(ページ不明)", icon=icon)
+            st.success(f"{main_file_path}", icon=icon)
 
         # ==========================================
         # ユーザー入力値と関連性が高いサブドキュメントのありかを表示
@@ -232,7 +232,7 @@ def display_search_llm_response(llm_response):
                     st.info(f"{sub_choice['source']}(ページNo.{sub_choice['page_number'] + 1})", icon=icon)
                 else:
                     # 「サブドキュメントのファイルパス」を表示
-                    st.info(f"{sub_choice['source']}(ページ不明)", icon=icon)
+                    st.info(f"{sub_choice['source']}", icon=icon)
         
         # 表示用の会話ログに格納するためのデータを用意
         # - 「mode」: モード（「社内文書検索」or「社内問い合わせ」）
@@ -312,7 +312,7 @@ def display_contact_llm_response(llm_response):
                 file_info = f"{file_path}(ページNo.{page_number + 1})"
             else:
                 # 「ファイルパス」のみ
-                file_info = f"{file_path}(ページ不明)"
+                file_info = f"{file_path}"
 
             # 参照元のありかに応じて、適したアイコンを取得
             icon = utils.get_source_icon(file_path)
