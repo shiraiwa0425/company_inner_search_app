@@ -86,14 +86,14 @@ except Exception as e:
 ############################################################
 # 6. チャット入力の受け付け
 ############################################################
-_, middle, _ = st.columns([ct.LEFT_COLUMN_WIDTH_MAIN, ct.MIDDLE_COLUMN_WIDTH_MAIN, ct.RIGHT_COLUMN_WIDTH_MAIN])
-with middle:
-    chat_message = st.chat_input(ct.CHAT_INPUT_HELPER_TEXT)
+chat_message = st.chat_input(ct.CHAT_INPUT_HELPER_TEXT)
 
 
 ############################################################
 # 7. チャット送信時の処理
 ############################################################
+_, middle, _ = st.columns([ct.LEFT_COLUMN_WIDTH_MAIN, ct.MIDDLE_COLUMN_WIDTH_MAIN, ct.RIGHT_COLUMN_WIDTH_MAIN])
+with middle:
     if chat_message:
         # ==========================================
         # 7-1. ユーザーメッセージの表示
