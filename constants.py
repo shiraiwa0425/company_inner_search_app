@@ -17,6 +17,7 @@ from langchain_community.document_loaders.csv_loader import CSVLoader
 # 画面表示系
 # ==========================================
 APP_NAME = "社内情報特化型生成AI検索アプリ"
+SELECT_MODE_TITLE = "利用目的"
 ANSWER_MODE_1 = "社内文書検索"
 ANSWER_MODE_2 = "社内問い合わせ"
 CHAT_INPUT_HELPER_TEXT = "こちらからメッセージを送信してください。"
@@ -55,6 +56,9 @@ SUPPORTED_EXTENSIONS = {
 WEB_URL_LOAD_TARGETS = [
     "https://generative-ai.web-camp.io/"
 ]
+CHUNK_SIZE = 500
+CHUNK_OVERLAP = 50
+TOP_K = 5
 
 
 # ==========================================
@@ -110,3 +114,13 @@ NO_DOC_MATCH_MESSAGE = """
 CONVERSATION_LOG_ERROR_MESSAGE = "過去の会話履歴の表示に失敗しました。"
 GET_LLM_RESPONSE_ERROR_MESSAGE = "回答生成に失敗しました。"
 DISP_ANSWER_ERROR_MESSAGE = "回答表示に失敗しました。"
+
+# ==========================================
+# レイアウト
+# ==========================================
+LEFT_COLUMN_WIDTH_MAIN = 1
+MIDDLE_COLUMN_WIDTH_MAIN = 3
+RIGHT_COLUMN_WIDTH_MAIN = 1
+
+LEFT_COLUMN_WIDTH_CHAT_MESSAGE = 1
+MIDDLE_COLUMN_WIDTH_CHAT_MESSAGE = 12

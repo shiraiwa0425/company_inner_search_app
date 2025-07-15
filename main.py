@@ -26,7 +26,9 @@ import constants as ct
 ############################################################
 # ブラウザタブの表示文言を設定
 st.set_page_config(
-    page_title=ct.APP_NAME
+    layout="wide",
+    page_title=ct.APP_NAME,
+    initial_sidebar_state="expanded"
 )
 
 # ログ出力を行うためのロガーの設定
@@ -58,7 +60,7 @@ if not "initialized" in st.session_state:
 ############################################################
 # タイトル表示
 cn.display_app_title()
-
+cn.display_select_mode_title()
 # モード表示
 cn.display_select_mode()
 
@@ -84,7 +86,8 @@ except Exception as e:
 ############################################################
 # 6. チャット入力の受け付け
 ############################################################
-chat_message = st.chat_input(ct.CHAT_INPUT_HELPER_TEXT)
+left, middle, _ = st.columns([ct.LEFT_COLUMN_WIDTH_MAIN, ct.MIDDLE_COLUMN_WIDTH_MAIN, ct.RIGHT_COLUMN_WIDTH_MAIN])
+chat_message = middle.chat_input(ct.CHAT_INPUT_HELPER_TEXT)
 
 
 ############################################################
