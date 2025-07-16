@@ -19,7 +19,8 @@ from langchain.text_splitter import CharacterTextSplitter
 from langchain_openai import OpenAIEmbeddings
 from langchain_community.vectorstores import Chroma
 import constants as ct
-
+from langchain_core.documents import Document
+from pprint import pprint
 
 ############################################################
 # 設定関連
@@ -217,7 +218,30 @@ def file_load(path, docs_all):
         # ファイルの拡張子に合ったdata loaderを使ってデータ読み込み
         loader = ct.SUPPORTED_EXTENSIONS[file_extension](path)
         docs = loader.load()
+        if file_name == "社員名簿.csv":
+            hr_contents = []
+            other_docs = []
+            for doc in docs:
+                if "部署: 人事部" in doc.page_content:
+                    hr_contents.append(doc.page_content)
+                else:
+                    other_docs.append(doc)
+            hr_list = "\n".join(hr_contents)
+            if hr_contents:
+                hr_doc_content = f"""
+人事部に所属している従業員を一覧化
+人事部の従業員一覧（全{len(hr_contents)}名）:
+{hr_list}
+人事部に所属している従業員情報を一覧化して表示しています。
+"""
+                hr_content_docs = [Document(
+                    page_content=hr_doc_content,
+                    metadata={"source": path, "department": "人事部", "employee_count": len(hr_contents)}
+                )]
+                pprint(f"hr_content_docs: {hr_content_docs}")
+                docs = hr_content_docs + other_docs
         docs_all.extend(docs)
+
 
 
 def adjust_string(s):
